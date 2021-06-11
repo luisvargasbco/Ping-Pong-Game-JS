@@ -11,17 +11,32 @@ const paddleW = 150;
 let paddleX = 150;
 let ballX = 150;
 let ballY = 150;
-let ballDX = 2;
-let ballDY = 4;
+let ballDX = Math.random(-4, -3, -2, 2, 3, 4);
+let ballDY = Math.random(-4, -3, -2, 2, 3, 4);
 
 function drawGameCanvas() {
     canvas = document.getElementById('gameBoard')
 
     if (canvas.getContext) {
         context = canvas.getContext('2d');
-        gameLoop = setInterval(draw, 16);
+        gameLoop = setInterval(draw, 2);
         window.addEventListener('keydown', keyInput)
     }
+}
+
+function gameOverHide() {
+    const gameOverMsg = document.getElementById('gameOver');
+    
+    if (gameOverMsg.style.display === "none") {
+        gameOverMsg.style.display = "block";
+    } else {
+        gameOverMsg.style.display = "none";
+    }
+}
+gameOverHide();
+
+function gameOverShow() {
+    const gameOverMsg = document.getElementById('gameOver');
 }
 
 function draw() {
@@ -57,9 +72,11 @@ function draw() {
     } else if (ballY + ballDY > boardY -15) {
         if (ballX > paddleX && ballX < paddleX + paddleW) {
             ballDY = -ballDY;
+            score + 1;
+            // AQUÍ TOCA
         } else {
             clearInterval(gameLoop);
-            alert('Game Over')
+            gameOverHide();
         }
     }
 }
@@ -80,5 +97,20 @@ function keyInput(e) {
             break;
     }
 }
+
+// Esto es lo que se me ocurre para reiniciar el juego
+
+const restartGame = document.querySelector('button');
+
+restartGame.onclick = function() {
+    location.reload();
+}
+
+// let score = document.querySelector('score');
+
+// function addScore() {
+//     score + Number(1);
+// }
+// addScore();
 
 drawGameCanvas();

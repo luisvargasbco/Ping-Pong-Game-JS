@@ -5,14 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Canvas Game</title>
+  <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <h1>
-    Canvas Game
-  </h1>
+  <div class="title" style="font-family: Arial, Helvetica, sans-serif;"><h1>Canvas Game</h1></div>
+
   <div>
     <canvas id="gameBoard" width="300" height="300"></canvas>
   </div>
+  <div class="gameOver" id="gameOver">
+    <strong style="font-family: Arial, Helvetica, sans-serif;">Game Over</strong>
+    <button id="button">Replay</button>
+  </div>
+
+  <div class="points" id="points">
+    <strong>Points: </strong>
+  </div>
+  <div class="score" type="number" id="score">0</div>
 </body>
 </html>
